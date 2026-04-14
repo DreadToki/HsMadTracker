@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HsTracker.Console/HsTracker.Console.csproj" />
+  <Project Path="HsTracker.Core/HsTracker.Core.csproj" />
+</Solution>

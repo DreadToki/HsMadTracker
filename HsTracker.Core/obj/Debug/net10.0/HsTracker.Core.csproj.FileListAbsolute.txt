@@ -1,0 +1,11 @@
+/home/toki/Work/HsTracker/HsTracker.Core/bin/Debug/net10.0/HsTracker.Core.deps.json
+/home/toki/Work/HsTracker/HsTracker.Core/bin/Debug/net10.0/HsTracker.Core.dll
+/home/toki/Work/HsTracker/HsTracker.Core/bin/Debug/net10.0/HsTracker.Core.pdb
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/HsTracker.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/HsTracker.Core.AssemblyInfoInputs.cache
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/HsTracker.Core.AssemblyInfo.cs
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/HsTracker.Core.csproj.CoreCompileInputs.cache
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/HsTracker.Core.dll
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/refint/HsTracker.Core.dll
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/HsTracker.Core.pdb
+/home/toki/Work/HsTracker/HsTracker.Core/obj/Debug/net10.0/ref/HsTracker.Core.dll
