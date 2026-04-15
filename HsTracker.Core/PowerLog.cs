@@ -4,6 +4,7 @@ public class PowerLog
 {
     // TODO: Review the usage of FileSystemEventHandler
     public event EventHandler<string>? NewLogFileChanged;
+    public event EventHandler<string>? NewPowerTaskListLog;
     public required string CurrentPath { get; set; }
     private const string _currentLogFile = "Power.log";
     string? _currentLogFilePath;
@@ -75,11 +76,30 @@ public class PowerLog
 
     private void ReadLines()
     {
+        // TODO: Manage logic of the flow of parsing different entities. Moreover, subscribe different classes to different outputs
+        /*
+            1. What if to separate the log reading: two different flows:
+                1) First reads GameState Logs => logs as soon as possible. (Review these entities:
+                    GameState.DebugPrintGame, GameState.DebugPrintEntityChoices, GameState.DebugPrintEntitiesChosen and others)
+                2) Second reads PowerTaskList Logs => logs with the delay of the animation what is happening on the screen. (Main use case for this project)
+                3) Third reads everything else => just to be sure that I am not missing anything important.
+        */
         string? logContent;
 
         while ((logContent = _streamReader?.ReadLine()) != null)
         {
-            NewLogFileChanged?.Invoke(this, logContent);
+            // Idea: Here should be the implementation of only extracting PowerTaskList for example
+            // Consider rewriting sending parts of logs with Channels and not with events.
+            // Moreover, think of implementing some kind of buffer for the logs.
+            RouteLogLine(logContent);
+        }
+    }
+
+    private void RouteLogLine(string logContent)
+    {
+        if (logContent.Contains("PowerTaskList"))
+        {
+            NewPowerTaskListLog?.Invoke(this, logContent);
         }
     }
 
@@ -94,6 +114,6 @@ public class PowerLog
         _fileStream?.Dispose();
         _streamReader?.Dispose();
         _monitoringPath?.StopWatching();
-        System.Console.WriteLine($"Stopped watching {_currentLogFile}");
+        System.Console.WriteLine($"Stopped watching {_monitoringPath}");
     }
 }

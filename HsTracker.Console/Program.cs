@@ -6,7 +6,7 @@ internal class Program
     {
         PowerLog monitor = new() { CurrentPath = "/home/toki/Data/Games/BattleNet/Hearthstone/" };
 
-        monitor.NewLogFileChanged += (sender, logContent) =>
+        monitor.NewPowerTaskListLog += (sender, logContent) =>
         {
             System.Console.WriteLine($"{logContent}");
         };

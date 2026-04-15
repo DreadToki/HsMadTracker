@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/toki/Work/HsTracker/HsTracker.Core/HsTracker.Core.csproj",
+      "projectUniqueName": "/home/toki/Work/HsMadTracker/HsTracker.Core/HsTracker.Core.csproj",
       "projectName": "HsTracker.Core",
-      "projectPath": "/home/toki/Work/HsTracker/HsTracker.Core/HsTracker.Core.csproj",
+      "projectPath": "/home/toki/Work/HsMadTracker/HsTracker.Core/HsTracker.Core.csproj",
       "packagesPath": "/home/toki/.nuget/packages/",
-      "outputPath": "/home/toki/Work/HsTracker/HsTracker.Core/obj/",
+      "outputPath": "/home/toki/Work/HsMadTracker/HsTracker.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/toki/.nuget/NuGet/NuGet.Config"
@@ -63,7 +63,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[10.0.4, 10.0.4]"
+            "version": "[10.0.0, 10.0.0]"
           }
         ],
         "frameworkReferences": {
@@ -71,7 +71,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.104/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
