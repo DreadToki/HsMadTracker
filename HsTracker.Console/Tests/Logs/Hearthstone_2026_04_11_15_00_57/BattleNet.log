@@ -1,0 +1,1 @@
+E 15:01:14.5644717 [] GetPlayRestrictions:GetCAISInfo failed with error=ERROR_INVALID_REGION (.\Contrib\LocalUnityPackages\BGS\Package\Runtime\BGS Client Integration\APIs\AccountApi.cs GetCAISInfo:117)

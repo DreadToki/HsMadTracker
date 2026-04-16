@@ -20,7 +20,7 @@ public class PowerLog
         _monitoringPath.PathChange += (path) =>
         {
             _currentLogFilePath = path;
-            SetupFileStream(path);
+            SetupFileStream(_currentLogFilePath);
         };
         _monitoringPath.StartWatching();
 
@@ -99,6 +99,7 @@ public class PowerLog
     {
         if (logContent.Contains("PowerTaskList"))
         {
+            NewLogFileChanged?.Invoke(this, logContent);
             NewPowerTaskListLog?.Invoke(this, logContent);
         }
     }
@@ -114,6 +115,6 @@ public class PowerLog
         _fileStream?.Dispose();
         _streamReader?.Dispose();
         _monitoringPath?.StopWatching();
-        System.Console.WriteLine($"Stopped watching {_monitoringPath}");
+        System.Console.WriteLine($"Stopped watching {_currentLogFilePath}");
     }
 }

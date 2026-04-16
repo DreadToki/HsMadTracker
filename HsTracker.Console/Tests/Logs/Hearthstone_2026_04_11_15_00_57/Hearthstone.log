@@ -1,0 +1,69 @@
+I 15:00:57.8031474 Application paused: False
+I 15:00:59.8196250 Current working dir=Z:\home\toki\Data\Games\BattleNet\Hearthstone
+I 15:00:59.8196250 SetLocale: enUS
+I 15:00:59.8196250 [Jobs Fallback logger]: [JobQueue.QueueJob] Job (DeeplinkService.PostFullLoginJobs(ID:1)) QUEUED
+I 15:00:59.8196250 [Jobs Fallback logger]: [JobQueue.QueueJob] Dependency (WaitForFullLoginFlowComplete) added for queued job (DeeplinkService.PostFullLoginJobs(ID:1))
+I 15:00:59.8196250 Command Line: -launch -uid hs_beta
+W 15:00:59.8196250 UberText LoadCachedData() failed: The output char buffer is too small to contain the decoded characters, encoding 'Unicode (UTF-8)' fallback 'System.Text.DecoderReplacementFallback'.
+Parameter name: chars
+I 15:01:00.3445587 Main thread: True
+I 15:01:00.3445587 System Info:
+I 15:01:00.3445587 SystemInfo - Device Name: MADSTATION
+I 15:01:00.3445587 SystemInfo - Device Model: B650 GAMING X AX V2 (Gigabyte Technology Co., Ltd.)
+I 15:01:00.3445587 SystemInfo - OS: Windows 10  (10.0.19045) 64bit
+I 15:01:00.3445587 SystemInfo - CPU Type: AMD Ryzen 9 7900X 12-Core Processor
+I 15:01:00.3445587 SystemInfo - CPU Cores: 24
+I 15:01:00.3445587 SystemInfo - System Memory: 31186
+I 15:01:00.3445587 SystemInfo - Screen Resolution: 3440x1440
+I 15:01:00.3445587 SystemInfo - Screen DPI: 96
+I 15:01:00.3445587 SystemInfo - GPU ID: 8708
+I 15:01:00.3445587 SystemInfo - GPU Name: NVIDIA GeForce RTX 3090
+I 15:01:00.3445587 SystemInfo - GPU Vendor: NVIDIA
+I 15:01:00.3445587 SystemInfo - GPU Memory: 3072
+I 15:01:00.3445587 SystemInfo - GPU Shader Level: 50
+I 15:01:00.3445587 SystemInfo - GPU NPOT Support: Full
+I 15:01:00.3445587 SystemInfo - Graphics API (version): Direct3D 11.0 [level 11.1]
+I 15:01:00.3445587 SystemInfo - Graphics API (type): Direct3D11
+I 15:01:00.3445587 SystemInfo - Graphics Supported Render Target Count: 8
+I 15:01:00.3445587 SystemInfo - Graphics Supports 3D Textures: True
+I 15:01:00.3445587 SystemInfo - Graphics Supports Compute Shaders: True
+I 15:01:00.3445587 SystemInfo - Graphics Supports Shadows: True
+I 15:01:00.3445587 SystemInfo - Graphics Supports Sparse Textures: True
+I 15:01:00.3445587 SystemInfo - Graphics RenderTextureFormat.ARGBHalf: True
+I 15:01:00.3445587 SystemInfo - Graphics Metal Support: False
+I 15:01:08.9328676 [Startup] Startup stage Start
+I 15:01:08.9328676 [Downloader] *** Loading DBF
+E 15:01:10.0613435 GAME_SAVE_SUBKEY DBF Asset has 0 records! Something went wrong generating it. Try checking the generated XMLs in the DBF folder.
+E 15:01:10.0613435 GLOBAL DBF Asset has 0 records! Something went wrong generating it. Try checking the generated XMLs in the DBF folder.
+I 15:01:10.3455516 *** BattleNet version: Product = 35.0.0.0, Data = 35001
+I 15:01:10.4575877 [Login] Beginning processing login challenges
+I 15:01:10.4575877 [Startup] Startup stage ConnectingToBattlenet
+I 15:01:10.4575877 CPU Benchmark Result (Average Frame Time): 57ms
+I 15:01:10.4666022 GPU Benchmark Result (Average Frame Time): 17ms
+I 15:01:12.6951812 [Login] We are now logged in, stopping processing challenges
+I 15:01:12.6951812 Region: EU
+I 15:01:12.6951812 Braze is supported  for this build: False
+I 15:01:12.6951812 [Startup] Startup stage ConnectingToHearthstone
+W 15:01:13.5938643 Attempting to get decks from CollectionManager, even though NetCacheDecks is not ready (meaning it's waiting for the decks to be updated)!
+W 15:01:13.5938643 Attempting to get decks from CollectionManager, even though NetCacheDecks is not ready (meaning it's waiting for the decks to be updated)!
+W 15:01:14.2761320 Attempting to get decks from CollectionManager, even though NetCacheDecks is not ready (meaning it's waiting for the decks to be updated)!
+W 15:01:14.2761320 Attempting to get decks from CollectionManager, even though NetCacheDecks is not ready (meaning it's waiting for the decks to be updated)!
+I 15:01:14.2761320 [Startup] Startup stage LaunchGame
+I 15:01:14.2761320 RegisterScreenBox tempGuardianVars=NetCache+NetCacheFeatures
+I 15:01:14.5738908 [HealthyGaming] CAIS ServerEnabledForPlatform=False AccountCAISForChina=False Country=UKR TimeSec=16.8413 PlayedTimeMin=0 RestedTimeMin=0 SessionStartTime=1775908871000
+I 15:01:14.9051117 [GameNetLogger] GameMgr.ChangeFindGameState() - state: CLIENT_STARTED, previous state: INVALID
+I 15:01:14.9051117 [GameNetLogger] GameMgr.ChangeFindGameState() - state: SERVER_GAME_CONNECTING, previous state: CLIENT_STARTED
+I 15:01:14.9051117 [GameNetLogger] Network.GotoGameServe() - gameConnectionDisconnected True, IsRestoringGameState: False
+I 15:01:14.9051117 [GameNetLogger] Network.GotoGameServe() - address= 5.42.177.220:3724, game=105057, client=52172560, spectateKey= reconnecting=True
+I 15:01:14.9051117 TcpConnection - possible ip address: 5.42.177.220
+I 15:01:14.9051117 Hiding notification HelpTooltip_Tutorial because something else is being shown.
+I 15:01:14.9561463 [GameNetLogger] Network.OnGameServerConnectEvent() - Connected to game server with error code ERROR_OK
+I 15:01:14.9561463 [GameNetLogger] Network.OnGameServerConnectEvent() - Connected to game server with socket error: Success, Message: Client: Connected
+I 15:01:14.9561463 [GameNetLogger] Network.SendGameServerHandshake()
+I 15:01:15.1563129 [GameNetLogger] GameMgr.OnGameSetup()
+I 15:01:15.1563129 [GameNetLogger] GameMgr.ChangeFindGameState() - state: SERVER_GAME_STARTED, previous state: SERVER_GAME_CONNECTING
+I 15:01:15.1563129 SERVER_GAME_STARTED event - Loading Gameplay Scene
+I 15:01:15.1563129 [GameNetLogger] GameMgr.ChangeFindGameState() - state: INVALID, previous state: SERVER_GAME_STARTED
+I 15:01:15.2807301 Gameplay.Awake() - CurrentMode=GAMEPLAY, PrevMode=LOGIN
+W 15:01:16.0813641 CardBackManager SetDeckCardBack(): cardBack is null!
+E 15:02:43.0012205 Releasing render texture that is set as Camera.targetTexture!

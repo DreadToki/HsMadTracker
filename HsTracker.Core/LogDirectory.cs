@@ -22,12 +22,16 @@ public class LogDirectory
         var newestDirectory = Directory
             .GetDirectories(_watchDirectory)
             .Select(d => new DirectoryInfo(d))
-            .OrderByDescending(d => d.CreationTime)
+            .OrderByDescending(d => d.Name)
             .FirstOrDefault();
 
         if (newestDirectory != null)
         {
             OnPathChange(newestDirectory.FullName);
+        }
+        else
+        {
+            System.Console.WriteLine($"No directories found in {_watchDirectory}");
         }
         _watcher = new FileSystemWatcher(_watchDirectory)
         {

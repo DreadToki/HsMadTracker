@@ -1,15 +1,28 @@
-﻿using HsTracker.Core;
+﻿using System.Text;
+using HsTracker.Core;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        PowerLog monitor = new() { CurrentPath = "/home/toki/Data/Games/BattleNet/Hearthstone/" };
-
-        monitor.NewPowerTaskListLog += (sender, logContent) =>
+        string debugPath =
+            "/home/toki/Work/HsMadTracker/HsTracker.Console/Tests/PowerTaskList_Debug.txt";
+        PowerLog monitor = new()
         {
-            System.Console.WriteLine($"{logContent}");
+            CurrentPath = "/home/toki/Work/HsMadTracker/HsTracker.Console/Tests/",
         };
+
+        // TODO: Review the logic and rewrite a method to write logs to separate files.
+
+        using (FileStream fs = File.Create(debugPath))
+        {
+            monitor.NewPowerTaskListLog += (sender, logContent) =>
+            {
+                byte[] info = new UTF8Encoding(true).GetBytes(logContent);
+                fs.Write(info, 0, info.Length);
+                // System.Console.WriteLine($"{logContent}");
+            };
+        }
 
         monitor.StartWatching();
         Console.ReadLine();
