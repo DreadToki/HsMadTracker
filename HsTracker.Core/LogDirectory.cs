@@ -2,7 +2,7 @@ namespace HsTracker.Core;
 
 public class LogDirectory
 {
-    public event Action<string>? PathChange;
+    public event EventHandler<PathChangedEventArgs>? PathChange;
     public required string ParentPath { get; set; }
     string? _watchDirectory;
     FileSystemWatcher? _watcher;
@@ -45,7 +45,7 @@ public class LogDirectory
     {
         if (Directory.Exists(path))
         {
-            PathChange?.Invoke(path);
+            PathChange?.Invoke(null, new() { FullName = path });
         }
     }
 

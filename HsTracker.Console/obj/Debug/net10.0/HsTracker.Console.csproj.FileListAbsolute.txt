@@ -35,3 +35,4 @@
 /home/toki/Work/HsMadTracker/HsTracker.Console/obj/Debug/net10.0/HsTracker.Console.pdb
 /home/toki/Work/HsMadTracker/HsTracker.Console/obj/Debug/net10.0/HsTracker.Console.genruntimeconfig.cache
 /home/toki/Work/HsMadTracker/HsTracker.Console/obj/Debug/net10.0/ref/HsTracker.Console.dll
+/home/toki/Work/HsTracker/HsTracker.Console/obj/Debug/net10.0/HsTracker.Console.sourcelink.json

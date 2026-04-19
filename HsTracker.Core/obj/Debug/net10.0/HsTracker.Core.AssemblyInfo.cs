@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HsTracker.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d20bbeaf7e2390b9138dfaa885a350586d31d3c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7429f96fb9f08b53f83e44f7ae6aaac87025c9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("HsTracker.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HsTracker.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

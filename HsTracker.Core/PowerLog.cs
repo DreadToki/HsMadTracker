@@ -17,10 +17,10 @@ public class PowerLog
     {
         _monitoringPath = new() { ParentPath = CurrentPath };
 
-        _monitoringPath.PathChange += (path) =>
+        _monitoringPath.PathChange += (sender, path) =>
         {
-            _currentLogFilePath = path;
-            SetupFileStream(_currentLogFilePath);
+            _currentLogFilePath = path.FullName;
+            SetupFileStream(_currentLogFilePath!);
         };
         _monitoringPath.StartWatching();
 
