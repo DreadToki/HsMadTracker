@@ -1,4 +1,8 @@
-namespace HsTracker.Core;
+using System.Text;
+using System.Text.RegularExpressions;
+using HsTracker.Core.Parsers;
+
+namespace HsTracker.Core.Readers;
 
 public class PowerLogReader(string powerLogFile) : IDisposable
 {
@@ -42,10 +46,6 @@ public class PowerLogReader(string powerLogFile) : IDisposable
 
     private void ReadPowerLog()
     {
-        while (_streamReader?.ReadLine() is string line)
-        {
-            System.Console.WriteLine($"{line}");
-            _parser.ParseLine(line);
-        }
+        _parser.ReadBlock(_streamReader);
     }
 }

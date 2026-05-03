@@ -1,4 +1,6 @@
-namespace HsTracker.Core;
+using HsTracker.Core.Readers;
+
+namespace HsTracker.Core.Watchers;
 
 public class LogDirectoryWatcher(
     string gameRootDirectory,
@@ -46,6 +48,7 @@ public class LogDirectoryWatcher(
 
     private void OnPowerLogCreated(object sender, FileSystemEventArgs e)
     {
+        System.Console.WriteLine($"Power log file created: {e.FullPath}");
         _powerLogReader = new(e.FullPath);
         _powerLogReader.Init();
     }
