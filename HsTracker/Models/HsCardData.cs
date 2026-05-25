@@ -1,8 +1,6 @@
-using System.Drawing;
-
 namespace HsTracker.Models;
 
-public class CardData
+public class HsCardData
 {
     public int Id { get; set; }
 

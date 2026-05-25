@@ -2,13 +2,9 @@ namespace HsTracker.Models;
 
 public class HsCard
 {
-    public int Id { get; set; }
+    public sbyte Player { get; set; }
 
-    public string? Name { get; set; }
+    public string? CardId { get; set; }
 
-    public sbyte ManaCost { get; set; }
-
-    public Uri? Image { get; set; }
-
-    public Uri? CropImage { get; set; }
+    public HsCardData? CardData { get; set; }
 }

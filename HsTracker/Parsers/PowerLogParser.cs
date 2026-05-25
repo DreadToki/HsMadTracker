@@ -40,8 +40,8 @@ public partial class PowerLogParser
     {
         _logger = logger;
         _memoryCache = memoryCache;
-        _memoryCache.Set(HsTrackerConsts.MyCards, new List<PlayedCard>());
-        _memoryCache.Set(HsTrackerConsts.EnemyCards, new List<PlayedCard>());
+        _memoryCache.Set(HsTrackerConsts.MyCards, new List<HsCard>());
+        _memoryCache.Set(HsTrackerConsts.EnemyCards, new List<HsCard>());
     }
 
     public void ParseBlock(StringBuilder powerLogBlock)
@@ -51,36 +51,48 @@ public partial class PowerLogParser
             string player = enemy.Groups["player"].Value;
             string cardId = enemy.Groups["card_id"].Value;
 
-            var cardData = _memoryCache.Get<List<CardData>>(HsTrackerConsts.CardData);
+            var cardData = _memoryCache.Get<List<HsCardData>>(HsTrackerConsts.HsCardData);
 
-            var playedCard = new PlayedCard
+            var playedCard = new HsCard
             {
                 Player = sbyte.Parse(player),
                 CardId = cardId,
                 CardData = cardData?.FirstOrDefault(cd => cd.CardId == cardId),
             };
 
-            _memoryCache.Get<List<PlayedCard>>(HsTrackerConsts.EnemyCards)?.Add(playedCard);
+            _memoryCache.Get<List<HsCard>>(HsTrackerConsts.EnemyCards)?.Add(playedCard);
 
-            _logger.LogInformation("{cardId} was played by {player}", player, cardId);
+            _logger.LogInformation(
+                "{cardName} was played by player {player} (Local Card ID: {cardId} | Global Card ID: {id})",
+                playedCard.CardData?.Name,
+                player,
+                cardId,
+                playedCard.CardData?.Id
+            );
         }
         else if (BlockTypePlayProperties.Match(powerLogBlock.ToString()) is Match me && me.Success)
         {
             string player = me.Groups["player"].Value;
             string cardId = me.Groups["card_id"].Value;
 
-            var cardData = _memoryCache.Get<List<CardData>>(HsTrackerConsts.CardData);
+            var cardData = _memoryCache.Get<List<HsCardData>>(HsTrackerConsts.HsCardData);
 
-            var playedCard = new PlayedCard
+            var playedCard = new HsCard
             {
                 Player = sbyte.Parse(player),
                 CardId = cardId,
                 CardData = cardData?.FirstOrDefault(cd => cd.CardId == cardId),
             };
 
-            _memoryCache.Get<List<PlayedCard>>(HsTrackerConsts.MyCards)?.Add(playedCard);
+            _memoryCache.Get<List<HsCard>>(HsTrackerConsts.MyCards)?.Add(playedCard);
 
-            _logger.LogInformation("{cardId} was played by {player}", player, cardId);
+            _logger.LogInformation(
+                "{cardName} was played by player {player} (Local Card ID: {cardId} | Global Card ID: {id})",
+                playedCard.CardData?.Name,
+                player,
+                cardId,
+                playedCard.CardData?.Id
+            );
         }
     }
 

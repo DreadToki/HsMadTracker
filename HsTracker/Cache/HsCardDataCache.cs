@@ -4,15 +4,15 @@ using Microsoft.Extensions.Logging;
 
 namespace HsTracker.Cache
 {
-    public class CardDataCache : ICardsCacheHandler
+    public class HsCardDataCache : IDataCacheHandler
     {
-        private readonly ILogger<CardDataCache> _logger;
+        private readonly ILogger<HsCardDataCache> _logger;
 
         private readonly IMemoryCache _memoryCache;
 
-        private ICardsCacheHandler? _next;
+        private IDataCacheHandler? _next;
 
-        public CardDataCache(ILogger<CardDataCache> logger, IMemoryCache memoryCache)
+        public HsCardDataCache(ILogger<HsCardDataCache> logger, IMemoryCache memoryCache)
         {
             _logger = logger;
             _memoryCache = memoryCache;
@@ -20,11 +20,11 @@ namespace HsTracker.Cache
 
         public void Handle()
         {
-            _memoryCache.Set(HsTrackerConsts.CardData, new List<CardData>());
+            _memoryCache.Set(HsTrackerConsts.HsCardData, new List<HsCardData>());
             _next?.Handle();
         }
 
-        public void SetNext(ICardsCacheHandler handler)
+        public void SetNext(IDataCacheHandler handler)
         {
             _next = handler;
         }

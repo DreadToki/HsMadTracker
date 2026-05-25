@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using HsTracker.Models;
+using HsTracker.Models.HearthstoneData;
 
 namespace HsTracker.Serialization;
 
@@ -8,6 +8,6 @@ namespace HsTracker.Serialization;
     PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase,
     PropertyNameCaseInsensitive = true
 )]
-[JsonSerializable(typeof(HsCardsPage))]
-[JsonSerializable(typeof(HsCard))]
+[JsonSerializable(typeof(HearthstoneDataCardsPage))]
+[JsonSerializable(typeof(HearthstoneDataCard))]
 internal partial class HsTrackerJsonSerializerContext : JsonSerializerContext { }

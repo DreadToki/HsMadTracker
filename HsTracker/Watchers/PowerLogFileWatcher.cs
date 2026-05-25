@@ -17,6 +17,8 @@ public class PowerLogFileWatcher : IDisposable, IFileSystemWatcherHandler
 
     private FileSystemWatcher? _powerLogWatcher;
 
+    private IFileSystemWatcherHandler[]? _next;
+
     public PowerLogFileWatcher(
         ILogger<PowerLogFileWatcher> logger,
         IConfiguration configuration,
@@ -54,9 +56,17 @@ public class PowerLogFileWatcher : IDisposable, IFileSystemWatcherHandler
         };
 
         _powerLogWatcher.Created += OnPowerLogCreated;
+
+        for (int i = 0; i < _next?.Length; i++)
+        {
+            _next[i].Handle();
+        }
     }
 
-    public void SetNext(params IFileSystemWatcherHandler[] handlers) { }
+    public void SetNext(params IFileSystemWatcherHandler[] handlers)
+    {
+        _next = handlers;
+    }
 
     private void OnPowerLogCreated(object sender, FileSystemEventArgs e)
     {

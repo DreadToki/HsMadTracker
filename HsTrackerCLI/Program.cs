@@ -1,4 +1,5 @@
 ﻿using HsTracker.Cache;
+using HsTracker.Models;
 using HsTracker.Parsers;
 using HsTracker.Readers;
 using HsTracker.Watchers;
@@ -12,7 +13,7 @@ namespace HsTrackerCLI;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var builder = Host.CreateApplicationBuilder(args);
 
@@ -20,64 +21,59 @@ internal class Program
 
         builder.Services.AddMemoryCache();
 
+        builder.Services.AddSingleton<HearthstoneDataCache>(provider =>
+        {
+            var hearthstoneDataCache = new HearthstoneDataCache(
+                provider.GetRequiredService<ILogger<HearthstoneDataCache>>(),
+                provider.GetRequiredService<IMemoryCache>()
+            );
+
+            hearthstoneDataCache.SetNext(provider.GetRequiredService<HsDataCache>());
+
+            return hearthstoneDataCache;
+        });
+
+        builder.Services.AddSingleton<HsCardDataCache>(provider =>
+        {
+            var hsCardDataCache = new HsCardDataCache(
+                provider.GetRequiredService<ILogger<HsCardDataCache>>(),
+                provider.GetRequiredService<IMemoryCache>()
+            );
+
+            hsCardDataCache.SetNext(provider.GetRequiredService<HearthstoneDataCache>());
+
+            return hsCardDataCache;
+        });
+
+        builder.Services.AddSingleton<HsDataCache>();
+
         builder.Services.AddSingleton<PowerLogParser>();
 
         builder.Services.AddSingleton<PowerLogReader>();
 
+        builder.Services.AddSingleton<PowerLogFileWatcher>();
+
+        builder.Services.AddHostedService<ProcessDirectoryWatcher>();
+
         builder.Services.AddSingleton<SessionLogsDirectoryWatcher>(provider =>
         {
-            var configuration = provider.GetRequiredService<IConfiguration>();
-            var memoryCache = provider.GetRequiredService<IMemoryCache>();
-
             var watcher = new SessionLogsDirectoryWatcher(
                 provider.GetRequiredService<ILogger<SessionLogsDirectoryWatcher>>(),
-                configuration,
-                memoryCache
+                provider.GetRequiredService<IConfiguration>(),
+                provider.GetRequiredService<IMemoryCache>()
             );
 
-            watcher.SetNext(
-                new PowerLogFileWatcher(
-                    provider.GetRequiredService<ILogger<PowerLogFileWatcher>>(),
-                    configuration,
-                    memoryCache,
-                    provider.GetRequiredService<PowerLogReader>()
-                )
-            );
+            watcher.SetNext(provider.GetRequiredService<PowerLogFileWatcher>());
 
             return watcher;
-        });
-
-        builder.Services.AddSingleton<CardDataCache>(provider =>
-        {
-            var memoryCache = provider.GetRequiredService<IMemoryCache>();
-
-            var cardDataCache = new CardDataCache(
-                provider.GetRequiredService<ILogger<CardDataCache>>(),
-                memoryCache
-            );
-
-            var hsCardsCache = new HsCardsCache(
-                provider.GetRequiredService<ILogger<HsCardsCache>>(),
-                memoryCache
-            );
-
-            var cardDefsCache = new CardDefsCache(
-                provider.GetRequiredService<ILogger<CardDefsCache>>(),
-                memoryCache
-            );
-
-            hsCardsCache.SetNext(cardDefsCache);
-            cardDataCache.SetNext(hsCardsCache);
-
-            return cardDataCache;
         });
 
         var host = builder.Build();
 
         host.Services.GetRequiredService<SessionLogsDirectoryWatcher>().Handle();
 
-        host.Services.GetRequiredService<CardDataCache>().Handle();
+        host.Services.GetRequiredService<HsCardDataCache>().Handle();
 
-        host.Run();
+        await host.RunAsync();
     }
 }

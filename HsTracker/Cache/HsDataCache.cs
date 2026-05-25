@@ -1,20 +1,21 @@
 using System.Xml;
 using System.Xml.Serialization;
 using HsTracker.Models;
+using HsTracker.Models.HsData;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace HsTracker.Cache;
 
-public class CardDefsCache : ICardsCacheHandler
+public class HsDataCache : IDataCacheHandler
 {
-    private readonly ILogger<CardDefsCache> _logger;
+    private readonly ILogger<HsDataCache> _logger;
 
     private readonly IMemoryCache _memoryCache;
 
-    private ICardsCacheHandler? _next;
+    private IDataCacheHandler? _next;
 
-    public CardDefsCache(ILogger<CardDefsCache> logger, IMemoryCache memoryCache)
+    public HsDataCache(ILogger<HsDataCache> logger, IMemoryCache memoryCache)
     {
         _logger = logger;
         _memoryCache = memoryCache;
@@ -32,14 +33,14 @@ public class CardDefsCache : ICardsCacheHandler
 
         var cardDefs = serializer.Deserialize(reader) as CardDefs;
 
-        var cardData = _memoryCache.Get<List<CardData>>(HsTrackerConsts.CardData);
+        var cardData = _memoryCache.Get<List<HsCardData>>(HsTrackerConsts.HsCardData);
 
         cardData?.ForEach(cd => cd.CardId = cardDefs?.Entities?.Single(c => c.Id == cd.Id).CardId);
 
         _next?.Handle();
     }
 
-    public void SetNext(ICardsCacheHandler handler)
+    public void SetNext(IDataCacheHandler handler)
     {
         _next = handler;
     }

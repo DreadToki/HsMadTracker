@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace HsTracker.Models;
+namespace HsTracker.Models.HsData;
 
 public class CardDefsEntity
 {

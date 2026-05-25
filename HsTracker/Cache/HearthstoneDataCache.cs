@@ -1,20 +1,21 @@
 using System.Text.Json;
 using HsTracker.Models;
+using HsTracker.Models.HearthstoneData;
 using HsTracker.Serialization;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace HsTracker.Cache;
 
-public class HsCardsCache : ICardsCacheHandler
+public class HearthstoneDataCache : IDataCacheHandler
 {
-    private readonly ILogger<HsCardsCache> _logger;
+    private readonly ILogger<HearthstoneDataCache> _logger;
 
     private readonly IMemoryCache _memoryCache;
 
-    private ICardsCacheHandler? _next;
+    private IDataCacheHandler? _next;
 
-    public HsCardsCache(ILogger<HsCardsCache> logger, IMemoryCache memoryCache)
+    public HearthstoneDataCache(ILogger<HearthstoneDataCache> logger, IMemoryCache memoryCache)
     {
         _logger = logger;
         _memoryCache = memoryCache;
@@ -30,9 +31,9 @@ public class HsCardsCache : ICardsCacheHandler
         {
             var json = File.ReadAllText(file);
 
-            var page = JsonSerializer.Deserialize<HsCardsPage>(
+            var page = JsonSerializer.Deserialize<HearthstoneDataCardsPage>(
                 json,
-                HsTrackerJsonSerializerContext.Default.HsCardsPage
+                HsTrackerJsonSerializerContext.Default.HearthstoneDataCardsPage
             );
 
             if (page == null || page.Cards == null)
@@ -41,9 +42,9 @@ public class HsCardsCache : ICardsCacheHandler
                 continue;
             }
 
-            var cardData = _memoryCache.Get<List<CardData>>(HsTrackerConsts.CardData);
+            var cardData = _memoryCache.Get<List<HsCardData>>(HsTrackerConsts.HsCardData);
             cardData?.AddRange(
-                page.Cards.Select(c => new CardData
+                page.Cards.Select(c => new HsCardData
                 {
                     Id = c.Id,
                     CardId = null,
@@ -58,7 +59,7 @@ public class HsCardsCache : ICardsCacheHandler
         _next?.Handle();
     }
 
-    public void SetNext(ICardsCacheHandler handler)
+    public void SetNext(IDataCacheHandler handler)
     {
         _next = handler;
     }
@@ -89,7 +90,8 @@ public class HsCardsCache : ICardsCacheHandler
             return null;
         }
 
-        var filePath = Directory.EnumerateFiles(directoryPath, $"{prefix}*.png").FirstOrDefault();
+        // TODO: crop_ ends with .jpg || full_ ends with .png
+        var filePath = Directory.EnumerateFiles(directoryPath, $"{prefix}*.*").FirstOrDefault();
 
         if (!File.Exists(filePath))
         {
